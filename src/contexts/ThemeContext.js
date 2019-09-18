@@ -1,14 +1,18 @@
 import React, {createContext, Component} from 'react';
 
-export const ThemContext = createContext();
+export const ThemeContext = createContext();
 
 class ThemeContextProvider extends Component {
 
     // state to be shared in different components
     state = {
-        isLightThem: true,
+        isLightTheme: true,
         light: {syntax: '#555', ui: '#ddd', bg:'#eee'},
         dark: {syntax: '#ddd', ui: '#333', bg:'#555'}
+    }
+
+    toggleTheme = () => {
+        this.setState({ isLightTheme: !this.state.isLightTheme});
     }
 
     /** {this.props.children} 
@@ -17,9 +21,9 @@ class ThemeContextProvider extends Component {
 
     render() { 
         return ( 
-            <ThemContext.Provider value={{...this.state}}>
+            <ThemeContext.Provider value={{...this.state, toggleTheme: this.toggleTheme}}>
                 {this.props.children} 
-            </ThemContext.Provider>
+            </ThemeContext.Provider>
         );
     }
 }
