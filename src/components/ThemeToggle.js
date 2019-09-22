@@ -6,8 +6,10 @@ class ThemeToggle extends Component {
     
     render() { 
         const {toggleTheme} = this.context;
+        const {isLightTheme, light, dark} = this.context;
+        const theme = isLightTheme ? light : dark;
         return ( 
-        <button onClick ={toggleTheme}> Toggle the theme </button> 
+        <button onClick ={toggleTheme} style ={{background:theme.ui, color: theme.syntax}}> Toggle the theme </button> 
         );
     }
 }
